@@ -101,6 +101,12 @@ func TestShowTrainingInfo(t *testing.T) {
 
 	unknownTest := "неизвестный тип тренировки"
 
+	runTestNull := "Тип тренировки: Бег\nДлительность: 0.00 ч.\nДистанция: 0.00 км.\nСкорость: 0.00 км/ч\nСожгли калорий: 0.00\n"
+
+	walkingTestNull := "Тип тренировки: Ходьба\nДлительность: 0.00 ч.\nДистанция: 0.00 км.\nСкорость: 0.00 км/ч\nСожгли калорий: 0.00\n"
+
+	swimmingTestNull := "Тип тренировки: Плавание\nДлительность: 0.00 ч.\nДистанция: 0.00 км.\nСкорость: 0.00 км/ч\nСожгли калорий: 0.00\n"
+
 	tests := []struct {
 		name string
 		args args
@@ -161,6 +167,48 @@ func TestShowTrainingInfo(t *testing.T) {
 				countPool:    2,
 			},
 			want: unknownTest,
+		},
+
+		{
+			name: "run test null",
+			args: args{
+				action:       0,
+				trainingType: "Бег",
+				duration:     0,
+				weight:       0,
+				height:       0,
+				lengthPool:   0,
+				countPool:    0,
+			},
+			want: runTestNull,
+		},
+
+		{
+			name: "walking test null",
+			args: args{
+				action:       0,
+				trainingType: "Ходьба",
+				duration:     0,
+				weight:       0,
+				height:       0,
+				lengthPool:   0,
+				countPool:    0,
+			},
+			want: walkingTestNull,
+		},
+
+		{
+			name: "swimming test null",
+			args: args{
+				action:       0,
+				trainingType: "Плавание",
+				duration:     0,
+				weight:       0,
+				height:       0,
+				lengthPool:   0,
+				countPool:    0,
+			},
+			want: swimmingTestNull,
 		},
 	}
 	for _, tt := range tests {
